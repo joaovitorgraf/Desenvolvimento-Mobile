@@ -49,7 +49,7 @@ export default function App() {
                                     backgroundColor: '#ccc',
                                     width: 70,
                                     height: 70,
-                                    borderRadius: '50%',
+                                    borderRadius: 35,
                                 }}
                                 source={require('./assets/favicon.png')}
                             />
@@ -70,7 +70,7 @@ export default function App() {
                                     backgroundColor: '#ccc',
                                     width: 70,
                                     height: 70,
-                                    borderRadius: '50%',
+                                    borderRadius: 35,
                                 }}
                                 source={require('./assets/favicon.png')}
                             />
@@ -91,7 +91,7 @@ export default function App() {
                                     backgroundColor: '#ccc',
                                     width: 70,
                                     height: 70,
-                                    borderRadius: '50%',
+                                    borderRadius: 35,
                                 }}
                                 source={require('./assets/favicon.png')}
                             />
@@ -112,7 +112,7 @@ export default function App() {
                                     backgroundColor: '#ccc',
                                     width: 70,
                                     height: 70,
-                                    borderRadius: '50%',
+                                    borderRadius: 35,
                                 }}
                                 source={require('./assets/favicon.png')}
                             />
@@ -133,7 +133,7 @@ export default function App() {
                                     backgroundColor: '#ccc',
                                     width: 70,
                                     height: 70,
-                                    borderRadius: '50%',
+                                    borderRadius: 35,
                                 }}
                                 source={require('./assets/favicon.png')}
                             />
@@ -154,7 +154,7 @@ export default function App() {
                                     backgroundColor: '#ccc',
                                     width: 70,
                                     height: 70,
-                                    borderRadius: '50%',
+                                    borderRadius: 35,
                                 }}
                                 source={require('./assets/favicon.png')}
                             />
@@ -192,7 +192,7 @@ export default function App() {
                                     backgroundColor: '#ccc',
                                     width: 45,
                                     height: 45,
-                                    borderRadius: '50%',
+                                    borderRadius: 35,
                                 }}
                                 source={require('./assets/favicon.png')}
                             />
@@ -237,7 +237,7 @@ export default function App() {
                                     backgroundColor: '#ccc',
                                     width: 45,
                                     height: 45,
-                                    borderRadius: '50%',
+                                    borderRadius: 35,
                                 }}
                                 source={require('./assets/favicon.png')}
                             />
