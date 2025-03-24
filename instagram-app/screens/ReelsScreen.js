@@ -1,5 +1,7 @@
-import { Text } from "react-native";
+import { Text } from 'react-native';
 
-export default function ReelsScreen() {
-  return <Text>Tela de Reels</Text>;
+export default function ReelsScreen () {
+    return (
+        <Text>Tela de Reels</Text>
+    )
 }
