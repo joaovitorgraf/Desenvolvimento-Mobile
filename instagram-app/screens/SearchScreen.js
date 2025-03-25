@@ -1,27 +1,84 @@
-import { useState, useEffect } from 'react';
-import { Text, TextInput } from 'react-native';
+import { useState, useEffect } from "react";
+import { FlatList, Text, TextInput, TouchableOpacity } from "react-native";
 
-export default function SearchScreen () {
+export default function SearchScreen() {
+  const [fieldText, setFiledText] = useState("");
 
-    const [searchText, setSearchText] = useState('');
+  const [list, setList] = useState([]);
 
-    useEffect(() => {
-        console.log(searchText);
-    }, [searchText])
+  useEffect(() => {
+    console.log(list);
+  }, [list]);
 
-    return (
-        <>
-            <Text>Tela de Pesquisa</Text>
-            <TextInput style={{
-                    height: 40,
-                    margin: 12,
-                    borderWidth: 1,
-                    padding: 10
-                }}
-                value={searchText}
-                onChangeText={setSearchText}
-            />
-            <Text style={{fontSize: 50}}>{searchText}</Text>
-        </>
-    )
+  return (
+    <>
+      <Text
+        style={{
+          fontSize: 30,
+          fontWeight: "bold",
+          textAlign: "center",
+          marginVertical: 20,
+        }}
+      >
+        TO DO LIST
+      </Text>
+      <TextInput
+        style={{
+          height: 50,
+          margin: 15,
+          borderWidth: 1,
+          padding: 10,
+        }}
+        value={fieldText}
+        onChangeText={setFiledText}
+      />
+      <TouchableOpacity
+        style={{
+          margin: 15,
+          backgroundColor: "#2b478a",
+          padding: 15,
+          borderRadius: 10,
+        }}
+        onPress={() => {
+          if (fieldText.trim()) {
+            setList([...list, fieldText]);
+            setFiledText("");
+          }
+        }}
+      >
+        <Text style={{ color: "white", textAlign: "center", fontSize: 18, fontWeight: "bold" }}>ADICIONAR</Text>
+      </TouchableOpacity>
+
+      <FlatList
+        data={list}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            onPress={() => {
+              setList(
+                list.filter((_, i) => {
+                  return i != index;
+                })
+              );
+            }}
+            style={{
+              backgroundColor: "#ccc",
+              marginHorizontal: 15,
+              marginVertical: 10,
+              padding: 15,
+              borderRadius: 10,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 20,
+                fontWeight: 600,
+              }}
+            >
+              {item}
+            </Text>
+          </TouchableOpacity>
+        )}
+      />
+    </>
+  );
 }
