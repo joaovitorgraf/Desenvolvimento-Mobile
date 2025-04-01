@@ -1,13 +1,44 @@
-import { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { SafeAreaView, Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function LoginScreen() {
-  const { email, setEmail } = useState('');
-  const { password, setPassword } = useState('');
+  const navigation = useNavigation();
+
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const login = async () => {
+    if (!email || !password) {
+      setErrorMessage('Informe o e-mail e senha.');
+      return;
+    }
+
+    if (!regexEmail.test(email)) {
+      setErrorMessage('E-mail inválido');
+      return;
+    }
+
+    if (!regexPassword.test(password)) {
+      setErrorMessage('A senha deve conter no mínimo 8 caracteres, letra maiúscula, minúscula, número e símbolo');
+      return;
+    }
+
+    setErrorMessage('');
+  };
+
+  useEffect(() => {
+    setErrorMessage('');
+  }, [email, password]);
 
   return (
     <SafeAreaView>
-      <View style={styles.conteiner}>
+      <View style={styles.container}>
         <Text style={styles.title}>Entrar</Text>
         <TextInput
           placeholder="E-mail"
@@ -27,13 +58,25 @@ export default function LoginScreen() {
           onChangeText={setPassword}
           value={password}
         />
+        {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
         <TouchableOpacity
           onPress={() => {
-            console.log('Login');
+            login();
           }}
-          style={styles.buttom}
+          style={styles.button}
         >
-          <Text style={styles.buttomText}>Login</Text>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+
+        <Text>Ainda não tem uma conta?</Text>
+
+        <TouchableOpacity
+          onPress={() => {
+            navigation.push('Register');
+          }}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Registrar-se</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -41,7 +84,7 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  conteiner: {
+  container: {
     margin: 25,
   },
   title: {
@@ -51,7 +94,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    borderColor: 'Black',
+    borderColor: 'black',
     borderWidth: 2,
     borderRadius: 15,
     padding: 15,
@@ -59,16 +102,21 @@ const styles = StyleSheet.create({
     color: 'black',
     marginVertical: 15,
   },
-  buttom: {
+  button: {
     backgroundColor: '#27428f',
     padding: 15,
     borderRadius: 15,
     marginVertical: 15,
   },
-  buttomText: {
+  buttonText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
+  },
+  errorMessage: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: 'red',
   },
 });
